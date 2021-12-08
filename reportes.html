@@ -1,0 +1,300 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>  
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.deep_purple-pink.min.css">
+    <link rel="stylesheet" href="css/stylesmat.css">
+    <style>
+        #view-source {
+          position: fixed;
+          display: block;
+          right: 0;
+          bottom: 0;
+          margin-right: 40px;
+          margin-bottom: 40px;
+          z-index: 900;
+        }
+        </style>
+    <title>Inicio</title>
+</head>
+<body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    
+   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--yellow-A700">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>Apolo - Web</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--amber">
+          <a href="home.html" class="mdl-layout__tab">Noticias</a>
+          <a href="documentos.html" class="mdl-layout__tab">Documentos</a>
+          <a href="reportes.html" class="mdl-layout__tab is-active">Reportes</a>
+          <a href="usuarios.html" class="mdl-layout__tab">Usuarios</a>
+          <a href="faqinfo.html" class="mdl-layout__tab">FAQ App</a>
+          <a href="javascript:salir()" class="mdl-layout__tab">Cerrar sesión</a>
+          <script>
+            function salir(){
+              firebase.auth().signOut();
+              window.location.href = "loginTest.html";
+              console.log('log out exitoso')
+            }
+          </script>
+  
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4>Documentos en proceso</h4>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="margin-top: 35px; right: 260px;">
+                  <label class="mdl-button mdl-js-button mdl-button--icon" for="search1">
+                    <i class="material-icons">search</i>
+                  </label>
+                  <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="search1">
+                    <label class="mdl-textfield__label" for="search1">Expandable Input</label>
+                  </div>
+                </div>
+
+                <table class="mdl-data-table mdl-js-data-table" id="tablaA">
+                  
+                    <thead>
+                      <tr>
+                        
+                        
+
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Nº Doc</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Tipo</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Fecha</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Estado</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Id dueño</th>
+
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="tabladoc1">
+                      <tr>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+          </section>        
+        
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4>Documentos listos para entrega</h4>
+
+                
+                
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="margin-top: 35px; right: 330px;">
+                  <label class="mdl-button mdl-js-button mdl-button--icon" for="search2">
+                    <i class="material-icons">search</i>
+                  </label>
+                  <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="search2">
+                    <label class="mdl-textfield__label" for="search2">Expandable Input</label>
+                  </div>
+                </div>
+               
+                <table class="mdl-data-table mdl-js-data-table" id="tablaB">
+                  
+                    <thead>
+                      <tr>
+                        
+                        
+
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Nº Doc</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Tipo</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Fecha</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Estado</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Id dueño</th>
+
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="tabladoc2">
+                      <tr>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+                  </div>
+                 </div> 
+          </section>        
+        
+
+
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4>Documentos observados</h4>
+
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="margin-top: 35px; right: 260px;">
+                  <label class="mdl-button mdl-js-button mdl-button--icon" for="search3">
+                    <i class="material-icons">search</i>
+                  </label>
+                  <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" id="search3">
+                    <label class="mdl-textfield__label" for="search3">Expandable Input</label>
+                  </div>
+                </div>
+                <table class="mdl-data-table mdl-js-data-table" id="tablaC">
+                  
+                    <thead>
+                      <tr>
+                        
+                        
+
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Nº Doc</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Tipo</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Fecha</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Estado</th>
+                        <th class="mdl-data-table__cell--non-numeric" role="columnheader" scope="col">Id dueño</th>
+
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tbody id="tabladoc3">
+                      <tr>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>
+                        <td class="mdl-data-table__cell--non-numeric"></td>                        
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+          </section>        
+        </main>
+          <footer class="demo-footer mdl-mini-footer">
+            <div class="mdl-mini-footer--left-section">
+              <ul class="mdl-mini-footer--link-list">
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Privacy and Terms</a></li>
+                <li><a href="#">User Agreement</a></li>
+              </ul>
+            </div>
+          </footer>
+      
+    </div>
+    
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="scripts/reportesDocs.js"></script>
+<!--- Scripts busqueda --->
+    <script>
+      $(document).ready(function(){  
+           $('#search1').keyup(function(){  
+                search_table($(this).val());  
+           });  
+           function search_table(value){  
+                $('#tablaA tr').each(function(){  
+                     var found = 'false';  
+                     $(this).each(function(){  
+                          if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                          {  
+                               found = 'true';  
+                          }  
+                     });  
+                     if(found == 'true')  
+                     {  
+                          $(this).show();  
+                     }  
+                     else  
+                     {  
+                          $(this).hide();  
+                     }  
+                });  
+           }  
+      });  
+    </script>
+
+    <script>
+      $(document).ready(function(){  
+        $('#search2').keyup(function(){  
+              search_table($(this).val());  
+        });  
+        function search_table(value){  
+              $('#tablaB tr').each(function(){  
+                  var found = 'false';  
+                  $(this).each(function(){  
+                        if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                        {  
+                            found = 'true';  
+                        }  
+                  });  
+                  if(found == 'true')  
+                  {  
+                      $(this).show();  
+                  }  
+                  else  
+                  {  
+                      $(this).hide();  
+                  }  
+              });  
+          }  
+      });  
+</script>
+<script>
+  $(document).ready(function(){  
+       $('#search3').keyup(function(){  
+            search_table($(this).val());  
+       });  
+       function search_table(value){  
+            $('#tablaC tr').each(function(){  
+                 var found = 'false';  
+                 $(this).each(function(){  
+                      if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                      {  
+                           found = 'true';  
+                      }  
+                 });  
+                 if(found == 'true')  
+                 {  
+                      $(this).show();  
+                 }  
+                 else  
+                 {  
+                      $(this).hide();  
+                 }  
+            });  
+       }  
+  });  
+</script>
+  </body>
+</html>
